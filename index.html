@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Extrañas CONFI? - Post Confirma 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Pinyon+Script&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-oscuro: #0b2a6f;
+    --azul: #1d4ed8;
+    --azul-claro: #9cc7f0;
+    --blanco: #ffffff;
+    --gris: #c7ced9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: "Montserrat", sans-serif;
+    color: var(--blanco);
+    background: #0a1d4a;
+    overflow-x: hidden;
+  }
+
+  /* Fondo: si agregas foto.jpg junto a este archivo, se usa como fondo */
+  .fondo {
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      linear-gradient(180deg, rgba(10,29,74,.55) 0%, rgba(10,29,74,.85) 70%, rgba(8,22,58,.97) 100%),
+      url("foto.jpg") center/cover no-repeat,
+      linear-gradient(160deg, #3a5a8c 0%, #0b2a6f 100%);
+    animation: zoomLento 30s ease-in-out infinite alternate;
+  }
+  @keyframes zoomLento { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+  .contenedor {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 28px 18px 40px;
+    max-width: 520px; margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Título superior */
+  .titulo-principal {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(64px, 19vw, 96px);
+    line-height: .9;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 18px rgba(0,0,0,.35);
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  .extranas {
+    font-family: "Pinyon Script", cursive;
+    font-size: clamp(34px, 9vw, 48px);
+    color: var(--azul-claro);
+    display: block;
+    margin-bottom: -8px;
+  }
+  .letra {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: aparecerLetra .5s ease forwards;
+    animation-delay: calc(var(--i) * 60ms);
+  }
+  @keyframes aparecerLetra { to { opacity: 1; transform: translateY(0); } }
+
+  .fecha-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeIn .8s ease 1.2s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .fecha-numero {
+    font-family: "Anton", sans-serif;
+    font-size: clamp(140px, 42vw, 210px);
+    line-height: .9;
+    color: var(--gris);
+    opacity: 0;
+    transform: translateY(-40px) scale(.9);
+    animation: entrarFecha 1s cubic-bezier(.2,.8,.2,1) 1.5s forwards;
+    text-shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  @keyframes entrarFecha { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  /* Foto con máscara que se revela */
+  .foto-wrap {
+    width: 100%;
+    margin-top: -20px;
+    position: relative;
+    clip-path: inset(0 100% 0 0);
+    animation: revelarFoto 1.4s ease 2.4s forwards;
+  }
+  @keyframes revelarFoto { to { clip-path: inset(0 0 0 0); } }
+  .foto-wrap img, .foto-placeholder {
+    width: 100%; display: block;
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    animation: ken 18s ease-in-out infinite alternate;
+  }
+  .foto-placeholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #2c4f8f, #0d2657);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--azul-claro);
+  }
+  @keyframes ken { from { transform: scale(1) translate(0,0); } to { transform: scale(1.1) translate(-2%, 1%); } }
+
+  /* Banda "Reunión POST CONFIRMA 2026" */
+  .banda {
+    width: 100%;
+    margin-top: 28px;
+    position: relative;
+  }
+  .reunion {
+    font-family: "Pinyon Script", cursive;
+    font-size: clamp(40px, 11vw, 60px);
+    background: var(--gris);
+    color: #111;
+    display: inline-block;
+    padding: 2px 18px 0;
+    transform: rotate(-4deg) translateX(-150px);
+    opacity: 0;
+    animation: entrarDeLado .8s ease 3.6s forwards;
+    margin-left: 0;
+    align-self: flex-start;
+  }
+  @keyframes entrarDeLado {
+    to { transform: rotate(-4deg) translateX(0); opacity: 1; }
+  }
+  .postconfirma {
+    background: var(--azul-oscuro);
+    font-family: "Anton", sans-serif;
+    font-size: clamp(54px, 15.5vw, 82px);
+    line-height: 1;
+    padding: 6px 10px 2px;
+    letter-spacing: 1px;
+    margin-top: -18px;
+    transform: translateX(-120%);
+    animation: entrarBanda .9s cubic-bezier(.2,.8,.2,1) 4s forwards;
+  }
+  @keyframes entrarBanda { to { transform: translateX(0); } }
+  .anio {
+    display: inline-block;
+    background: var(--blanco);
+    color: var(--azul-oscuro);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    padding: 4px 16px;
+    margin-top: 8px;
+    opacity: 0;
+    animation: fadeIn .6s ease 4.8s forwards;
+  }
+
+  .hora-lugar {
+    margin-top: 16px;
+    font-size: 26px;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn .8s ease 5.2s forwards;
+  }
+  .hora-lugar small {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--azul-claro);
+    margin-top: 4px;
+  }
+
+  /* Cuenta regresiva */
+  .countdown {
+    display: flex; gap: 10px; justify-content: center;
+    margin-top: 22px;
+    opacity: 0;
+    animation: fadeIn .8s ease 5.6s forwards;
+  }
+  .countdown div {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 10px;
+    padding: 10px 8px;
+    min-width: 66px;
+  }
+  .countdown b {
+    display: block;
+    font-family: "Anton", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .countdown span { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Versículo */
+  .versiculo {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .versiculo p {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: lineaVersiculo 1s ease forwards;
+  }
+  .versiculo p:nth-child(1) { animation-delay: 6.2s; }
+  .versiculo p:nth-child(2) { animation-delay: 7.2s; }
+  .versiculo p:nth-child(3) { animation-delay: 8.2s; color: var(--azul-claro); font-style: normal; font-weight: 400; margin-top: 6px; }
+  @keyframes lineaVersiculo { to { opacity: 1; transform: translateY(0); } }
+
+  /* Botones calendario */
+  .acciones {
+    margin-top: 28px;
+    display: flex; flex-direction: column; gap: 12px; width: 100%;
+    opacity: 0;
+    animation: fadeIn .8s ease 9s forwards;
+  }
+  .btn {
+    display: block;
+    text-decoration: none;
+    color: var(--blanco);
+    background: var(--azul);
+    border: 2px solid rgba(255,255,255,.85);
+    border-radius: 999px;
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn:hover, .btn:active { transform: scale(1.03); background: #2563eb; }
+  .btn.pulso { animation: pulso 2.4s ease-in-out infinite; }
+  @keyframes pulso {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(156,199,240,.55); }
+    50% { box-shadow: 0 0 0 12px rgba(156,199,240,0); }
+  }
+  .btn-sec { background: transparent; }
+
+  .firma {
+    margin-top: 34px;
+    font-family: "Pinyon Script", cursive;
+    font-size: 34px;
+    color: var(--azul-claro);
+    opacity: 0;
+    animation: fadeIn 1s ease 9.6s forwards;
+  }
+
+  /* Pantalla en celulares pequeños */
+  @media (max-width: 380px) {
+    .countdown div { min-width: 58px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="fondo"></div>
+
+<main class="contenedor">
+
+  <h1 class="titulo-principal">
+    <span class="extranas">¿Extrañas</span>
+    <span id="confi"></span>
+  </h1>
+
+  <div class="fecha-label">la fecha:</div>
+  <div class="fecha-numero">7/11</div>
+
+  <div class="foto-wrap">
+    <img src="foto.jpg" alt="Grupo de confirmación"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'foto-placeholder',textContent:'Sube aquí la foto: foto.jpg'}))">
+  </div>
+
+  <div class="banda">
+    <div class="reunion">Reunión</div>
+    <div class="postconfirma">POST CONFIRMA</div>
+    <div class="anio">2026</div>
+  </div>
+
+  <div class="hora-lugar">
+    4:00 p. m. · Auditorio
+    <small>Colegio SNJ</small>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div><b id="d">--</b><span>días</span></div>
+    <div><b id="h">--</b><span>horas</span></div>
+    <div><b id="m">--</b><span>min</span></div>
+    <div><b id="s">--</b><span>seg</span></div>
+  </div>
+
+  <blockquote class="versiculo">
+    <p>"Por tanto, id, y haced discípulos a todas las naciones,</p>
+    <p>bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo."</p>
+    <p>— Mateo 28:19</p>
+  </blockquote>
+
+  <div class="acciones">
+    <a class="btn pulso" id="google" href="#" target="_blank" rel="noopener">📅 Agregar a Google Calendar</a>
+    <a class="btn btn-sec" id="apple" href="#" download="post-confirma-2026.ics">🍎 Agregar a Apple Calendar</a>
+  </div>
+
+  <div class="firma">Catequistas SNJ</div>
+</main>
+
+<script>
+  // Título con letras que aparecen una a una
+  const texto = "CONFI?";
+  const cont = document.getElementById("confi");
+  [...texto].forEach((c, i) => {
+    const s = document.createElement("span");
+    s.className = "letra";
+    s.style.setProperty("--i", i + 3);
+    s.textContent = c;
+    cont.appendChild(s);
+  });
+
+  // Datos del evento: sábado 7 de noviembre de 2026, 4:00 p. m. Lima (UTC-5)
+  const inicio = new Date("2026-11-07T16:00:00-05:00");
+  const fin    = new Date("2026-11-07T18:00:00-05:00");
+  const titulo = "Post Confirma 2026 - Catequistas SNJ";
+  const lugar  = "Auditorio, Colegio SNJ";
+  const descripcion = "Reencuentro del grupo de confirmación. ¡Te esperamos!";
+
+  const fmt = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+  // Google Calendar
+  const gUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(titulo) +
+    "&dates=" + fmt(inicio) + "/" + fmt(fin) +
+    "&details=" + encodeURIComponent(descripcion) +
+    "&location=" + encodeURIComponent(lugar) +
+    "&ctz=America/Lima";
+  document.getElementById("google").href = gUrl;
+
+  // Apple / archivo .ics
+  const ics = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Catequistas SNJ//ES",
+    "BEGIN:VEVENT",
+    "UID:postconfirma2026@catequistassnj",
+    "DTSTAMP:" + fmt(new Date()),
+    "DTSTART:" + fmt(inicio),
+    "DTEND:" + fmt(fin),
+    "SUMMARY:" + titulo,
+    "LOCATION:" + lugar,
+    "DESCRIPTION:" + descripcion,
+    "END:VEVENT", "END:VCALENDAR"
+  ].join("\r\n");
+  document.getElementById("apple").href =
+    "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  // Cuenta regresiva
+  function actualizar() {
+    const diff = inicio - new Date();
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML = "<b style='font-size:20px'>¡Hoy es el día!</b>";
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+    document.getElementById("d").textContent = d;
+    document.getElementById("h").textContent = String(h).padStart(2, "0");
+    document.getElementById("m").textContent = String(m).padStart(2, "0");
+    document.getElementById("s").textContent = String(s).padStart(2, "0");
+  }
+  actualizar();
+  setInterval(actualizar, 1000);
+</script>
+</body>
+</html>
